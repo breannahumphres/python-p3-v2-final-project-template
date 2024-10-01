@@ -106,6 +106,9 @@ class Character():
         if weapons:
             best_weapon = max(weapons, key=lambda weapon: weapon.value)
             self.current_weapon = best_weapon
+            return (best_weapon.item_name, best_weapon.value)
+        else: 
+            return (None, 0)
     
     @classmethod
     def get_all(cls):
