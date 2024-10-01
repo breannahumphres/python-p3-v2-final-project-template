@@ -70,18 +70,6 @@ To access the admin features, choose "Admin Menu" from the main menu.
 - **Inventory Management:** Collect items such as weapons and food. You can use food to restore health, and better weapons increase your chances of success in combat.
 - **Make Story Decisions:** The game offers branching paths where your choices affect the outcome of your journey. Your decisions will lead you through unique encounters and influence your progress.
 
-## File Structure
-|-- game/
-|   |-- lib/
-|       |-- cli.py  # Main game logic and menus
-|       |-- helpers.py  # Helper functions like exit_program
-|   |-- models/
-|       |-- __init__.py  # Database setup and table creation
-|       |-- characters.py  # Character class and ORM methods
-|       |-- items.py  # Item class and ORM methods
-|-- Pipfile  # Dependencies for the project
-|-- README.md  # Documentation for the project
-
 ## Acknowledgments
 This project was built by Bre Humphres. Special thanks to my instructor, Sakib, and peers for guidance.
 
