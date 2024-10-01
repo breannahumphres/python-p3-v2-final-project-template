@@ -31,11 +31,11 @@ def main():
         elif choice == "1":
             check_player_stats()
         elif choice == "2":
-            begin_story()
+            continue_story()
         elif choice == "3":
             restart_game()
         elif choice == "4":
-            clear_past_games()
+            admin_menu()
         else: 
             print("Invalid Choice")
 
@@ -46,7 +46,64 @@ def menu():
     print("1. Check Player Stats")
     print("2. Continue Story")
     print("3. Restart Game")
-    print("4. Clear Past Games")
+    print("4. Admin Menu")
+
+def admin_menu():
+    while True:
+        print("\n--- Admin Menu ---")
+        print("1. Clear Past Games")
+        print("2. List All Characters")
+        print("3. Find Character by ID")
+        print("4. List All Items")
+        print("5. Find Items by ID")
+        print("6. go back to menu")
+
+        choice = input(" >")
+        if choice == "1":
+            clear_past_games()
+        elif choice == "2":
+            list_all_characters()
+        elif choice == "3":
+            find_character_by_id()
+        elif choice == "4":
+            list_all_items()
+        elif choice == "5":
+            find_item_by_id()
+        elif choice == "6":
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+def list_all_characters():
+    characters = Character.get_all()
+    if characters:
+        for character in characters:
+            print(f"ID: {character.id}, Name: {character.name}, HP: {character.health_points}, Gold: {character.gold_coins} ")
+    else: 
+        print("No characters found")
+def find_character_by_id():
+    character_id = input("Enter character ID: ")
+    character = Character.find_by_id(int(character_id))
+    if character: 
+        print(f"Found: ID: {character_id}, Name: {character.name}, HP: {character.health_points}, Gold, {character.gold_coins}")
+    else: 
+        print("Character not found.")
+
+def list_all_items():
+    items = Item.get_all()
+    if items:
+        for item in items:
+            print(f"ID: {item.id}, Name: {item.item_name}, Type: {item.item_type}, Value: {item.value} ")
+    else: 
+            print("No items found")
+
+def find_item_by_id():
+    item_id = input("Enter item ID: ")
+    item = Item.find_by_id(int(item_id))
+    if item: 
+        print(f"Found: ID: {item_id}, Name: {item.item_name}, Type: {item.item_type}, Value, {item.value}")
+    else: 
+        print("Item not found.")
 
 def check_player_stats():
     global player 
@@ -73,7 +130,7 @@ def clear_past_games():
     except sqlite3.Error as e:
         print(f"Error clearing tables: {e}")
 
-def begin_story():
+def continue_story():
     global story_progress
     if story_progress == 0:
         print(f"Well, {player.name}, you are in for a bit of a surprise. There is a human-sized dung beetle heading right towards you. What do you do?")

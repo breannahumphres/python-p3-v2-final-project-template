@@ -103,4 +103,19 @@ class Character():
         if weapons:
             best_weapon = max(weapons, key=lambda weapon: weapon.value)
             self.current_weapon = best_weapon
+    
+    @classmethod
+    def get_all(cls):
+        CURSOR.execute('SELECT * FROM characters')
+        character_rows = CURSOR.fetchall()
+        return [cls(row[1], row[2], row[3], row[0]) for row in character_rows]
+    
+    @classmethod
+    def find_by_id(cls, character_id):
+        CURSOR.execute('SELECT * FROM characters WHERE id = ?', (character_id,))
+        character_row = CURSOR.fetchone()
+        if character_row:
+            return cls(character_row[1], character_row[2], character_row[3], character_row[0])
+        return None
+
             
