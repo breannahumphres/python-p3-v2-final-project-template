@@ -16,22 +16,22 @@ The Journey Never Ends is a text-based adventure game where players embark on a 
 
 1. **Clone the repository:**
 
-git clone <repository-url>
-cd your-repo-folder
+- git clone (repository-url)
+- cd (your-repo-folder)
 
 2. **Install Dependencies:**
 
-    - Ensure you have Python 3 installed.
-    - Install required dependencies using the provided Pipfile (if you have pipenv):
-pipenv install
-pipenv shell
-If you are not using pipenv, you can install dependencies manually:
+    -   Ensure you have Python 3 installed.
+    -   Install required dependencies using the provided Pipfile (if you have pipenv):
+- pipenv install
+- pipenv shell
 
-pip install sqlite3
+- If you are not using pipenv, you can install dependencies manually:
+    -   pip install sqlite3
 
 3. **Run the Game:**
 
-python lib/cli.py
+- python lib/cli.py
 
 ## Usage
 
