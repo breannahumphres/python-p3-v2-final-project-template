@@ -78,24 +78,27 @@ class Character():
         else:
             print(f"{food_name} not found in inventory")
     def check_inventory(self):
-        print(f"{self.name}'s Stats:")
-        print(f"Health Points: {self.health_points}")
-        print(f"Gold Coins: {self.gold_coins}")
-        print(f"{self.name}'s Inventory:")
-        food_items = [item for item in self.inventory if item.item_type == "Food"]
-        for index, item in enumerate(self.inventory):
-            print(f"{index + 1}. {item.item_name} ({item.item_type}), Value: {item.value}")
-        if food_items:
-            print("Would you like to eat some food to restore health?")
-            choice = input("Enter the number of the food to ear, or press Enter to skip: ")
+        if not self.inventory:
+            print(f"{self.name} has no items in their inventory")
+        else:
+            print(f"{self.name}'s Stats:")
+            print(f"Health Points: {self.health_points}")
+            print(f"Gold Coins: {self.gold_coins}")
+            print(f"{self.name}'s Inventory:")
+            food_items = [item for item in self.inventory if item.item_type == "Food"]
+            for index, item in enumerate(self.inventory):
+                print(f"{index + 1}. {item.item_name} ({item.item_type}), Value: {item.value}")
+            if food_items:
+                print("Would you like to eat some food to restore health?")
+                choice = input("Enter the number of the food to ear, or press Enter to skip: ")
 
-            if choice.isdigit():
-                item_index = int(choice) - 1
-                if 0 <= item_index < len(self.inventory) and self.inventory[item_index].item_type == "Food":
-                   food_item = self.inventory[item_index]
-                   self.use_food(food_item.item_name)
-                else:
-                    print("Invalid choice or the selected item is not food.")
+                if choice.isdigit():
+                    item_index = int(choice) - 1
+                    if 0 <= item_index < len(self.inventory) and self.inventory[item_index].item_type == "Food":
+                        food_item = self.inventory[item_index]
+                        self.use_food(food_item.item_name)
+                    else:
+                        print("Invalid choice or the selected item is not food.")
 
     def equip_best_weapon(self):
         weapons = [item for item in self.inventory if item.item_type == "Weapon"]

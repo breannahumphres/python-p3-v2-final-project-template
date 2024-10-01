@@ -83,11 +83,14 @@ def list_all_characters():
         print("No characters found")
 def find_character_by_id():
     character_id = input("Enter character ID: ")
-    character = Character.find_by_id(int(character_id))
-    if character: 
-        print(f"Found: ID: {character_id}, Name: {character.name}, HP: {character.health_points}, Gold, {character.gold_coins}")
-    else: 
-        print("Character not found.")
+    if character_id.isdigit():
+        character = Character.find_by_id(int(character_id))
+        if character: 
+            print(f"Found: ID: {character_id}, Name: {character.name}, HP: {character.health_points}, Gold, {character.gold_coins}")
+        else: 
+            print("Character not found.")
+    else:
+        print("Invalid Input. Please enter a numeric ID")
 
 def list_all_items():
     items = Item.get_all()
@@ -99,11 +102,14 @@ def list_all_items():
 
 def find_item_by_id():
     item_id = input("Enter item ID: ")
-    item = Item.find_by_id(int(item_id))
-    if item: 
-        print(f"Found: ID: {item_id}, Name: {item.item_name}, Type: {item.item_type}, Value, {item.value}")
+    if item_id.isdigit():
+        item = Item.find_by_id(int(item_id))
+        if item: 
+            print(f"Found: ID: {item_id}, Name: {item.item_name}, Type: {item.item_type}, Value, {item.value}")
+        else: 
+            print("Item not found.")
     else: 
-        print("Item not found.")
+        print("Invalid Input. Expected an integer")
 
 def check_player_stats():
     global player 
@@ -118,7 +124,7 @@ def restart_game():
     player.health_points = 100
     player.gold_coins = 100
     player.inventory = []
-    player.current_weapon = "Stick"
+    player.current_weapon = Item("Stick", "Weapon", 5)
     print("The game has been restarted!")
 
 def clear_past_games():

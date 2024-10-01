@@ -1,172 +1,94 @@
-# Phase 3 CLI+ORM Project Template
+# The Journey Never Ends Adventure Game
 
-## Learning Goals
+## Description:
 
-- Discuss the basic directory structure of a CLI.
-- Outline the first steps in building a CLI.
+The Journey Never Ends is a text-based adventure game where players embark on a journey through a mystical forest, encountering enemies, making decisions, and managing their inventory. The game offers players the opportunity to explore the story while managing their health and gold, acquiring items, and interacting with NPCs. Additionally, an admin menu provides options to manage game data, view player statistics, and clear past game data.
 
----
+## Features:
 
-## Introduction
+**Player Stats Management**: Track your health and gold throughout the game.
+**Inventory System**: Manage weapons and food items, consume food to regain health.
+**Story-Based Choices**: Make decisions that impact the progression of the story.
+**Admin Menu**: Includes options to view characters, manage game data, and clear past games.
+**SQL Database Integration**: Player and item data are stored and managed using SQLite.
 
-You now have a basic idea of what constitutes a CLI. Fork and clone this lesson
-for a project template for your CLI.
+## Installation:
 
-Take a look at the directory structure:
+1. **Clone the repository:**
 
-```console
-.
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-└── lib
-    ├── models
-    │   ├── __init__.py
-    │   └── model_1.py
-    ├── cli.py
-    ├── debug.py
-    └── helpers.py
-```
+git clone <repository-url>
+cd your-repo-folder
 
-Note: The directory also includes two files named `CONTRIBUTING.md` and
-`LICENSE.md` that are specific to Flatiron's curriculum. You can disregard or
-delete the files if you want.
+2. **Install Dependencies:**
 
----
-
-## Generating Your Environment
-
-You might have noticed in the file structure- there's already a Pipfile!
-
-Install any additional dependencies you know you'll need for your project by
-adding them to the `Pipfile`. Then run the commands:
-
-```console
+    - Ensure you have Python 3 installed.
+    - Install required dependencies using the provided Pipfile (if you have pipenv):
 pipenv install
 pipenv shell
-```
+If you are not using pipenv, you can install dependencies manually:
 
----
+pip install sqlite3
 
-## Generating Your CLI
+3. **Run the Game:**
 
-A CLI is, simply put, an interactive script and prompts the user and performs
-operations based on user input.
+python lib/cli.py
 
-The project template has a sample CLI in `lib/cli.py` that looks like this:
+## Usage
 
-```py
-# lib/cli.py
+The game starts by asking for the player's name, followed by a menu where you can choose different actions:
 
-from helpers import (
-    exit_program,
-    helper_1
-)
+- **Check Player Stats:** View your health, gold coins, and inventory.
+- **Continue Story:** Progress through the story and encounter challenges or collect items.
+- **Restart Game:** Restart the game with default stats (100 HP, 100 Gold, Stick weapon).
+Additionally, there is an *Admin Menu* that provides options to manage the game data.
 
+## Game Instructions
 
-def main():
-    while True:
-        menu()
-        choice = input("> ")
-        if choice == "0":
-            exit_program()
-        elif choice == "1":
-            helper_1()
-        else:
-            print("Invalid choice")
+Upon launching the game, you will be presented with a menu. You will use this menu to navigate through the game, check your stats, continue your adventure, and access the admin menu.
 
+## Main Menu Options:
+**Check Player Stats:** View your current health points, gold coins, and items in your inventory. You can also consume food to restore health.
+**Continue Story:** Progress through the story, encounter challenges, make decisions that affect your fate, and collect new items.
+**Restart Game:** Reset the game to its initial state, starting with 100 health points, 100 gold coins, and a basic weapon (Stick).
+**Admin Menu:** Access additional features for managing game data, including viewing all characters and items, and clearing the database.
 
-def menu():
-    print("Please select an option:")
-    print("0. Exit the program")
-    print("1. Some useful function")
+## Admin Menu:
+The admin menu is designed for advanced game management. Only available from the main menu, this allows you to manage the database and view all stored data.
 
+## Admin Features
+To access the admin features, choose "Admin Menu" from the main menu.
 
-if __name__ == "__main__":
-    main()
-```
+## Admin Menu Options: 
+- **Clear Past Games:** Clears all characters and items from the database.
+- **List All Characters:** View all characters stored in the database.
+- **Find Character by ID:** Search for a character by their ID.
+- - **List All Items:** View all items stored in the database.
+**Find Item by ID:** Search for an item by its ID.
 
-The helper functions are located in `lib/helpers.py`:
+## Playing the Game:
+- **Fight or Flee:** Throughout the game, you will encounter enemies like a human-sized dung beetle. You can choose to fight, flee, or use an item from your inventory to restore health and continue battling.
+- **Inventory Management:** Collect items such as weapons and food. You can use food to restore health, and better weapons increase your chances of success in combat.
+- **Make Story Decisions:** The game offers branching paths where your choices affect the outcome of your journey. Your decisions will lead you through unique encounters and influence your progress.
 
-```py
-# lib/helpers.py
+## File Structure
+|-- game/
+|   |-- lib/
+|       |-- cli.py  # Main game logic and menus
+|       |-- helpers.py  # Helper functions like exit_program
+|   |-- models/
+|       |-- __init__.py  # Database setup and table creation
+|       |-- characters.py  # Character class and ORM methods
+|       |-- items.py  # Item class and ORM methods
+|-- Pipfile  # Dependencies for the project
+|-- README.md  # Documentation for the project
 
-def helper_1():
-    print("Performing useful function#1.")
+## Acknowledgments
+This project was built by Bre Humphres. Special thanks to my instructor, Sakib, and peers for guidance.
 
-
-def exit_program():
-    print("Goodbye!")
-    exit()
-```
-
-You can run the template CLI with `python lib/cli.py`, or include the shebang
-and make it executable with `chmod +x`. The template CLI will ask for input, do
-some work, and accomplish some sort of task.
-
-Past that, CLIs can be whatever you'd like, as long as you follow the project
-requirements.
-
-Of course, you will update `lib/cli.py` with prompts that are appropriate for
-your application, and you will update `lib/helpers.py` to replace `helper_1()`
-with a useful function based on the specific problem domain you decide to
-implement, along with adding other helper functions to the module.
-
-In the `lib/models` folder, you should rename `model_1.py` with the name of a
-data model class from your specific problem domain, and add other classes to the
-folder as needed. The file `lib/models/__init__.py` has been initialized to
-create the necessary database constants. You need to add import statements to
-the various data model classes in order to use the database constants.
-
-You are also welcome to implement a different module and directory structure.
-However, your project should be well organized, modular, and follow the design
-principal of separation of concerns, which means you should separate code
-related to:
-
-- User interface
-- Data persistence
-- Problem domain rules and logic
-
----
-
-## Updating README.md
-
-`README.md` is a Markdown file that should describe your project. You will
-replace the contents of this `README.md` file with a description of **your**
-actual project.
-
-Markdown is not a language that we cover in Flatiron's Software Engineering
-curriculum, but it's not a particularly difficult language to learn (if you've
-ever left a comment on Reddit, you might already know the basics). Refer to the
-cheat sheet in this assignments's resources for a basic guide to Markdown.
-
-### What Goes into a README?
-
-This README serves as a template. Replace the contents of this file to describe
-the important files in your project and describe what they do. Each Python file
-that you edit should get at least a paragraph, and each function should be
-described with a sentence or two.
-
-Describe your actual CLI script first, and with a good level of detail. The rest
-should be ordered by importance to the user. (Probably functions next, then
-models.)
-
-Screenshots and links to resources that you used throughout are also useful to
-users and collaborators, but a little more syntactically complicated. Only add
-these in if you're feeling comfortable with Markdown.
-
----
-
-## Conclusion
-
-A lot of work goes into a good CLI, but it all relies on concepts that you've
-practiced quite a bit by now. Hopefully this template and guide will get you off
-to a good start with your Phase 3 Project.
-
-Happy coding!
-
----
-
-## Resources
-
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
+*Take a look at some AI images that give a visual element to the game!*
+![First awakening](images/awakening.webp)
+![Evaline](images/evaline.webp)
+![The city of Constania](images/constania.webp)
+![The inn](images/theinn.webp)
+![The blacksmith](images/blacksmith.webp)
+![The cerulean sword](images/sword.webp)
