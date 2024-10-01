@@ -2,6 +2,7 @@
 from models.characters import Character
 from models.items import Item
 import sqlite3
+import os
 
 CONN = sqlite3.connect('game.db')
 CURSOR = CONN.cursor()
@@ -11,6 +12,9 @@ from helpers import (
 )
 story_progress = 0
 player = None
+
+def clear_screen():
+    os.system('cls' if os.name == 'et' else 'clear')
 
 def main():
     global player
@@ -41,6 +45,7 @@ def main():
 
 
 def menu():
+    clear_screen()
     print("Please select an option:")
     print("0. Exit the program")
     print("1. Check Player Stats")
