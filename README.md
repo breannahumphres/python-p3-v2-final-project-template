@@ -62,8 +62,8 @@ To access the admin features, choose "Admin Menu" from the main menu.
 - **Clear Past Games:** Clears all characters and items from the database.
 - **List All Characters:** View all characters stored in the database.
 - **Find Character by ID:** Search for a character by their ID.
-- - **List All Items:** View all items stored in the database.
-**Find Item by ID:** Search for an item by its ID.
+- **List All Items:** View all items stored in the database.
+- **Find Item by ID:** Search for an item by its ID.
 
 ## Playing the Game:
 - **Fight or Flee:** Throughout the game, you will encounter enemies like a human-sized dung beetle. You can choose to fight, flee, or use an item from your inventory to restore health and continue battling.
